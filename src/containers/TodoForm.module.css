@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+
+.todoList {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  margin: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #160101;
+  /* box-shadow:
+           The top layer shadow 0 1px 1px rgba(0, 0, 0, 0.4), 
+      /* The second layer  0 10px 0 -5px rgba(255,255,255, 0.1),
+      /* The second layer shadow  0 10px 1px -4px rgba(0, 0, 0, 0.4),
+      /* The third layer  0 20px 0 -10px rgba(255, 255, 255, 0.1),
+      /* The third layer shadow 0 20px 1px -9px rgba(0, 0, 0, 0.4); */
+  padding: 30px;
+  box-sizing: border-box;
+  margin-top: 4rem;
+  min-width: 400px;
+}
+
+.form {
+  width: 100%;
+}
+
+.inputField {
+  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 70%;
+  margin-bottom: 15px;
+}
+
+.addItemButton {
+  display: block !important;
+  width: 150px !important;
+  margin: 0 auto !important;
+  padding-bottom: 20px !important;
+  padding: 0 0 20px 5px !important;
+}
+
+h1 {
+  color: black;
+  font-family: 'Chilanka', cursive;
+}

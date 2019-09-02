@@ -1,0 +1,22 @@
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 5px 10px;
+  width: 75%;
+  border: 1px solid black;
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+  font-size: 1.1rem;
+  color: #333333;
+  box-sizing: border-box;
+  margin: 5px 10px 5px 0;
+  border-radius: 15px;
+  background-color: lightblue;
+  height: 100%;
+}
+
+.actionButton {
+  padding-bottom: 5px;
+  box-sizing: border-box;
+}

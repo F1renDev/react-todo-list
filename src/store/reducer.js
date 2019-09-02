@@ -1,10 +1,22 @@
 import * as actionTypes from "./actions";
 import shortid from "shortid";
 
+let todosArr;
+
+// if localStorage is empty, no items are shown on the start-up
+if (localStorage.length > 0) {
+  let arr = Object.keys(localStorage);
+  todosArr = arr.map((item) => {
+    let newItem = JSON.parse(localStorage.getItem(item));
+    return newItem;
+  });
+} else {
+  todosArr = [];
+}
+
 const initialState = {
   currentItem: "",
-// TODO: переделать массив в объект и добавить в нето свойства text, done, id
-  todos: []
+  todos: todosArr
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,13 +26,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentItem: action.nextLetter
       };
+    // using localStorage to save
     case actionTypes.HANDLE_ITEM_SUBMIT:
       action.event.preventDefault();
+      const currentId = shortid.generate();
+      localStorage.setItem(
+        currentId,
+        JSON.stringify({ text: state.currentItem, done: false, id: currentId })
+      );
       return {
         ...state,
         todos: [
           ...state.todos,
-          { text: state.currentItem, done: false, id: shortid.generate() }
+          { text: state.currentItem, done: false, id: currentId }
         ],
         currentItem: ""
       };
@@ -43,9 +61,29 @@ const reducer = (state = initialState, action) => {
       const filteredTodos = state.todos.filter((item) => {
         return item.id !== action.id;
       });
+      localStorage.removeItem(action.id);
       return {
         ...state,
         todos: filteredTodos
+      };
+    // when an 'edit' button is clicked the value of the current list item is changed to ''
+    case actionTypes.HANDLE_ITEM_EDIT:
+      let prevListValue;
+      const mappedTodos = state.todos.map((item) => {
+        if (item.id === action.id) {
+          prevListValue = item.text;
+        }
+        return item;
+      });
+
+      const filteredMappedTodos = mappedTodos.filter(
+        (item) => item.id !== action.id
+      );
+      localStorage.removeItem(action.id);
+      return {
+        ...state,
+        currentItem: prevListValue,
+        todos: filteredMappedTodos
       };
     default: {
       return state;
