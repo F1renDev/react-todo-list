@@ -45,6 +45,19 @@ const reducer = (state = initialState, action) => {
     case actionTypes.HANDLE_ITEM_TOGGLE:
       const newTodos = state.todos.map((item) => {
         if (item.id === action.id) {
+          // switching the done (crossed-out) state in the localStorage
+          const prevItemInLocalStorageToggleState = JSON.parse(
+            localStorage.getItem(item.id)
+          );
+          const newItemInLocalStorageToggleState = {
+            ...prevItemInLocalStorageToggleState,
+            done: !prevItemInLocalStorageToggleState.done
+          };
+          localStorage.setItem(
+            item.id,
+            JSON.stringify(newItemInLocalStorageToggleState)
+          );
+
           return {
             ...item,
             done: !item.done

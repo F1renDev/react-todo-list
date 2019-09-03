@@ -8,10 +8,22 @@ import styles from "./TodoForm.module.css";
 
 class TodoForm extends React.Component {
   render() {
+    // let listItem;
+    // if (this.props.item) {
+
+    //   listItem =
+    //     this.props.item.length > 40
+    //       ? this.props.item.slice(37) + "..."
+    //       : this.props.item;
+    // } else {
+    //   listItem = "";
+    // }
     return (
       <div className={styles.todoList}>
         <h1>Todo List</h1>
-        <form onSubmit={(event) => this.props.onItemSubmit(event)} className={styles.form}>
+        <form
+          onSubmit={(event) => this.props.onItemSubmit(event)}
+          className={styles.form}>
           <input
             className={styles.inputField}
             value={this.props.item}

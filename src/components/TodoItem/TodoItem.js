@@ -13,7 +13,7 @@ const TodoItem = (props) => {
         }}>
         {props.item.text}
       </div>
-      <div>
+      <div className={styles.buttonsDiv}>
         <div className={styles.actionButton}>
           <Button clicked={props.editTodo}>Edit</Button>
         </div>
