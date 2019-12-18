@@ -1,17 +1,15 @@
 import * as actionTypes from "./actions";
 import shortid from "shortid";
 
-let todosArr;
+let todosArr = [];
 
 // if localStorage is empty, no items are shown on the start-up
 if (localStorage.length > 0) {
   let arr = Object.keys(localStorage);
-  todosArr = arr.map((item) => {
+  todosArr = arr.map(item => {
     let newItem = JSON.parse(localStorage.getItem(item));
     return newItem;
   });
-} else {
-  todosArr = [];
 }
 
 const initialState = {
@@ -43,7 +41,7 @@ const reducer = (state = initialState, action) => {
         currentItem: ""
       };
     case actionTypes.HANDLE_ITEM_TOGGLE:
-      const newTodos = state.todos.map((item) => {
+      const newTodos = state.todos.map(item => {
         if (item.id === action.id) {
           // switching the done (crossed-out) state in the localStorage
           const prevItemInLocalStorageToggleState = JSON.parse(
@@ -71,10 +69,12 @@ const reducer = (state = initialState, action) => {
         todos: newTodos
       };
     case actionTypes.HANDLE_ITEM_DELETE:
-      const filteredTodos = state.todos.filter((item) => {
+      const filteredTodos = state.todos.filter(item => {
         return item.id !== action.id;
       });
       localStorage.removeItem(action.id);
+      //focusing the input filed
+      document.querySelector('input').focus();
       return {
         ...state,
         todos: filteredTodos
@@ -82,15 +82,17 @@ const reducer = (state = initialState, action) => {
     // when an 'edit' button is clicked the value of the current list item is changed to ''
     case actionTypes.HANDLE_ITEM_EDIT:
       let prevListValue;
-      const mappedTodos = state.todos.map((item) => {
+      const mappedTodos = state.todos.map(item => {
         if (item.id === action.id) {
           prevListValue = item.text;
         }
+        //focusing the input filed
+        document.querySelector('input').focus();
         return item;
       });
 
       const filteredMappedTodos = mappedTodos.filter(
-        (item) => item.id !== action.id
+        item => item.id !== action.id
       );
       localStorage.removeItem(action.id);
       return {

@@ -12,20 +12,26 @@ class TodoForm extends React.Component {
       <div className={styles.todoList}>
         <h1>Todo List</h1>
         <form
-          onSubmit={(event) => this.props.onItemSubmit(event)}
-          className={styles.form}>
+          onSubmit={event => this.props.onItemSubmit(event)}
+          className={styles.form}
+        >
           <input
             className={styles.inputField}
             value={this.props.item}
-            onChange={(event) => this.props.onItemChange(event)}
-            type='text'
+            onChange={event => this.props.onItemChange(event)}
+            type="text"
           />
           <div className={styles.addItemButton}>
-            <Button type='submit'>Add Item</Button>
+            <Button
+            //if the input field is empty 'Add item' button is disabled
+              disabled={this.props.item.length > 0 ? false : true}
+              type="submit"
+            >
+              Add Item
+            </Button>
           </div>
         </form>
-
-        {this.props.todosList.map((item) => {
+        {this.props.todosList.map(item => {
           return (
             <TodoItem
               editTodo={() => this.props.onItemEdit(item.id)}
@@ -42,31 +48,28 @@ class TodoForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     item: state.currentItem,
     todosList: state.todos
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onItemChange: (event) =>
+    onItemChange: event =>
       dispatch({
         type: actionTypes.HANDLE_INPUT_CHANGE,
         nextLetter: event.target.value
       }),
-    onItemSubmit: (event) =>
+    onItemSubmit: event =>
       dispatch({ type: actionTypes.HANDLE_ITEM_SUBMIT, event: event }),
-    onItemToggle: (id) =>
+    onItemToggle: id =>
       dispatch({ type: actionTypes.HANDLE_ITEM_TOGGLE, id: id }),
-    onItemDelete: (id) =>
+    onItemDelete: id =>
       dispatch({ type: actionTypes.HANDLE_ITEM_DELETE, id: id }),
-    onItemEdit: (id) => dispatch({ type: actionTypes.HANDLE_ITEM_EDIT, id: id })
+    onItemEdit: id => dispatch({ type: actionTypes.HANDLE_ITEM_EDIT, id: id })
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);

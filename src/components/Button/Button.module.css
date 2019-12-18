@@ -41,3 +41,8 @@
 .button:not(:disabled) {
     animation: enable 0.3s linear;
 }
+
+.button:disabled:hover{
+    cursor: not-allowed;
+    background-color: rgb(243, 79, 57);
+}
