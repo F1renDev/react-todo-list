@@ -6,47 +6,45 @@ import TodoItem from "../components/TodoItem/TodoItem";
 import Button from "../components/Button/Button";
 import styles from "./TodoForm.module.css";
 
-class TodoForm extends React.Component {
-  render() {
-    return (
-      <div className={styles.todoList}>
-        <h1>Todo List</h1>
-        <form
-          onSubmit={event => this.props.onItemSubmit(event)}
-          className={styles.form}
-        >
-          <input
-            className={styles.inputField}
-            value={this.props.item}
-            onChange={event => this.props.onItemChange(event)}
-            type="text"
-          />
-          <div className={styles.addItemButton}>
-            <Button
+const TodoForm = props => {
+  return (
+    <div className={styles.todoList}>
+      <h1>Todo List</h1>
+      <form
+        onSubmit={event => props.onItemSubmit(event)}
+        className={styles.form}
+      >
+        <input
+          className={styles.inputField}
+          value={props.item}
+          onChange={event => props.onItemChange(event)}
+          type="text"
+        />
+        <div className={styles.addItemButton}>
+          <Button
             //if the input field is empty 'Add item' button is disabled
-              disabled={this.props.item.length > 0 ? false : true}
-              type="submit"
-            >
-              Add Item
-            </Button>
-          </div>
-        </form>
-        {this.props.todosList.map(item => {
-          return (
-            <TodoItem
-              editTodo={() => this.props.onItemEdit(item.id)}
-              deleteTodo={() => this.props.onItemDelete(item.id)}
-              id={item.id}
-              toggleComplete={() => this.props.onItemToggle(item.id)}
-              item={item}
-              key={item.id}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+            disabled={props.item.length > 0 ? false : true}
+            type="submit"
+          >
+            Add Item
+          </Button>
+        </div>
+      </form>
+      {props.todosList.map(item => {
+        return (
+          <TodoItem
+            editTodo={() => props.onItemEdit(item.id)}
+            deleteTodo={() => props.onItemDelete(item.id)}
+            id={item.id}
+            toggleComplete={() => props.onItemToggle(item.id)}
+            item={item}
+            key={item.id}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return {

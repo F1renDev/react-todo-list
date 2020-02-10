@@ -74,7 +74,7 @@ const reducer = (state = initialState, action) => {
       });
       localStorage.removeItem(action.id);
       //focusing the input filed
-      document.querySelector('input').focus();
+      document.querySelector("input").focus();
       return {
         ...state,
         todos: filteredTodos
@@ -87,7 +87,7 @@ const reducer = (state = initialState, action) => {
           prevListValue = item.text;
         }
         //focusing the input filed
-        document.querySelector('input').focus();
+        document.querySelector("input").focus();
         return item;
       });
 

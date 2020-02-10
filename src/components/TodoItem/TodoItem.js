@@ -3,14 +3,15 @@ import React from "react";
 import styles from "./TodoItem.module.css";
 import Button from "../Button/Button";
 
-const TodoItem = (props) => {
+const TodoItem = props => {
   return (
     <div className={styles.todoItem}>
       <div
         onClick={props.toggleComplete}
         style={{
           textDecoration: props.item.done ? "line-through" : ""
-        }}>
+        }}
+      >
         {props.item.text}
       </div>
       <div className={styles.buttonsDiv}>

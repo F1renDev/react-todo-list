@@ -1,48 +1,48 @@
-
-
 .button {
-    background-color: rgba(255,255,255,.3);
-    outline: none;
-    cursor: pointer;
-    border: 1px solid #966909;
-    color: #966909;
-    font-family: inherit;
-    font-size: 1.2em;
-    border-radius: 8px;
-    padding: 0px 15px;
-    box-shadow: 2px 2px 2px #966909;
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #966909;
+  color: #966909;
+  font-family: inherit;
+  font-size: 1.2em;
+  border-radius: 8px;
+  padding: 0px 15px;
+  box-shadow: 2px 2px 2px #966909;
 }
 
-.button:hover, .button:active {
-    background-color: #A0DB41;
-    border: 1px solid #966909;
-    color: #966909;
+.button:hover,
+.button:active {
+  background-color: #a0db41;
+  border: 1px solid #966909;
+  color: #966909;
 }
 
 .buttonDelete {
-    background-color: rgba(255,255,255,.3);
-    outline: none;
-    cursor: pointer;
-    border: 1px solid #966909;
-    color: #966909;
-    font-family: inherit;
-    font-size: 1.2em;
-    border-radius: 8px;
-    padding: 0px 15px;
-    box-shadow: 2px 2px 2px #966909;
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #966909;
+  color: #966909;
+  font-family: inherit;
+  font-size: 1.2em;
+  border-radius: 8px;
+  padding: 0px 15px;
+  box-shadow: 2px 2px 2px #966909;
 }
 
-.buttonDelete:hover, .buttonDelete:active{
-    background-color: rgb(243, 79, 57);
-    border: 1px solid #966909;
-    color: #f5d692;
+.buttonDelete:hover,
+.buttonDelete:active {
+  background-color: rgb(243, 79, 57);
+  border: 1px solid #966909;
+  color: #f5d692;
 }
 
 .button:not(:disabled) {
-    animation: enable 0.3s linear;
+  animation: enable 0.3s linear;
 }
 
-.button:disabled:hover{
-    cursor: not-allowed;
-    background-color: rgb(243, 79, 57);
+.button:disabled:hover {
+  cursor: not-allowed;
+  background-color: rgb(243, 79, 57);
 }

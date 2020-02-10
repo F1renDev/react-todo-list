@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Chilanka&display=swap");
 
 .todoList {
   background: rgba(255, 255, 255, 0.3);
@@ -44,5 +44,5 @@
 
 h1 {
   color: black;
-  font-family: 'Chilanka', cursive;
+  font-family: "Chilanka", cursive;
 }
