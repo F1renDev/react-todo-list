@@ -6,7 +6,8 @@ let todosArr = [];
 // if localStorage is empty, no items are shown on the start-up
 if (localStorage.length > 0) {
   let arr = Object.keys(localStorage);
-  todosArr = arr.map(item => {
+  todosArr = arr.map((item) => {
+    console.log(item)
     let newItem = JSON.parse(localStorage.getItem(item));
     return newItem;
   });
@@ -14,7 +15,7 @@ if (localStorage.length > 0) {
 
 const initialState = {
   currentItem: "",
-  todos: todosArr
+  todos: todosArr,
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +23,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.HANDLE_INPUT_CHANGE:
       return {
         ...state,
-        currentItem: action.nextLetter
+        currentItem: action.nextLetter,
       };
     // using localStorage to save
     case actionTypes.HANDLE_ITEM_SUBMIT:
@@ -36,12 +37,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         todos: [
           ...state.todos,
-          { text: state.currentItem, done: false, id: currentId }
+          { text: state.currentItem, done: false, id: currentId },
         ],
-        currentItem: ""
+        currentItem: "",
       };
     case actionTypes.HANDLE_ITEM_TOGGLE:
-      const newTodos = state.todos.map(item => {
+      const newTodos = state.todos.map((item) => {
         if (item.id === action.id) {
           // switching the done (crossed-out) state in the localStorage
           const prevItemInLocalStorageToggleState = JSON.parse(
@@ -49,7 +50,7 @@ const reducer = (state = initialState, action) => {
           );
           const newItemInLocalStorageToggleState = {
             ...prevItemInLocalStorageToggleState,
-            done: !prevItemInLocalStorageToggleState.done
+            done: !prevItemInLocalStorageToggleState.done,
           };
           localStorage.setItem(
             item.id,
@@ -58,7 +59,7 @@ const reducer = (state = initialState, action) => {
 
           return {
             ...item,
-            done: !item.done
+            done: !item.done,
           };
         } else {
           return item;
@@ -66,10 +67,10 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        todos: newTodos
+        todos: newTodos,
       };
     case actionTypes.HANDLE_ITEM_DELETE:
-      const filteredTodos = state.todos.filter(item => {
+      const filteredTodos = state.todos.filter((item) => {
         return item.id !== action.id;
       });
       localStorage.removeItem(action.id);
@@ -77,12 +78,12 @@ const reducer = (state = initialState, action) => {
       document.querySelector("input").focus();
       return {
         ...state,
-        todos: filteredTodos
+        todos: filteredTodos,
       };
     // when an 'edit' button is clicked the value of the current list item is changed to ''
     case actionTypes.HANDLE_ITEM_EDIT:
       let prevListValue;
-      const mappedTodos = state.todos.map(item => {
+      const mappedTodos = state.todos.map((item) => {
         if (item.id === action.id) {
           prevListValue = item.text;
         }
@@ -92,13 +93,13 @@ const reducer = (state = initialState, action) => {
       });
 
       const filteredMappedTodos = mappedTodos.filter(
-        item => item.id !== action.id
+        (item) => item.id !== action.id
       );
       localStorage.removeItem(action.id);
       return {
         ...state,
         currentItem: prevListValue,
-        todos: filteredMappedTodos
+        todos: filteredMappedTodos,
       };
     default: {
       return state;

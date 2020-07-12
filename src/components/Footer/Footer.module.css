@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Chilanka&display=swap");
+
+.Footer {
+  text-align: center;
+  border-top: 1px solid white;
+  padding: 40px 0;
+}
+
+.Footer a {
+  font-family: "Chilanka", cursive;
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+}
